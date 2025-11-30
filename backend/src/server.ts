@@ -11,6 +11,7 @@ import { connectionToDatabase } from "./utils/db-util.js";
 import apiLogger from "./middleware/api-logger.js";
 import errorHandler from "./middleware/error-handler.js";
 import responseBuilder from "./middleware/response-builder.js";
+import auth from "./middleware/auth.js";
 
 // Routes
 import apiRoutes from "./route/index.js";
@@ -27,6 +28,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(apiLogger);
 app.use(responseBuilder);
+app.use(auth);
 
 // Routes
 app.use("/api", apiRoutes);
