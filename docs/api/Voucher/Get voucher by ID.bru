@@ -1,0 +1,20 @@
+meta {
+  name: Get voucher by ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://{{host}}:{{port}}/api/vouchers/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

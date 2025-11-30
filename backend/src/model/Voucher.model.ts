@@ -6,16 +6,16 @@ import db from "../config/db.js";
 export interface VoucherAttributes {
     id: number;
     name: string;
-    description: string;
+    description?: string;
 }
 
-export interface VocuherCreationAttributes extends Optional<
+export interface VoucherCreationAttributes extends Optional<
     VoucherAttributes,
     "id"
 > {}
 
 export class Voucher
-    extends Model<VoucherAttributes, VocuherCreationAttributes>
+    extends Model<VoucherAttributes, VoucherCreationAttributes>
     implements VoucherAttributes
 {
     declare id: number;
