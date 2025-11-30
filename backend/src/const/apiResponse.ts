@@ -11,6 +11,13 @@ const apiResponse = {
             editUser: "User edited successfully",
             deleteUser: "User deleted successfully"
         },
+        VOUCHER_PURCHASE: {
+            getVoucherPurchases: "Voucher purchases fetched successfully",
+            getVoucherPurchaseById: "Voucher purchase fetched successfully",
+            addVoucherPurchase: "Voucher purchase created successfully",
+            editVoucherPurchase: "Voucher purchase edited successfully",
+            deleteVoucherPurchase: "Voucher purchase deleted successfully"
+        }
     },
     error: {
         // General Errors
@@ -43,6 +50,11 @@ const apiResponse = {
         USER_NOT_FOUND: {
             code: "USER_NOT_FOUND",
             message: "User not found",
+        },
+        // Voucher Purchase Errors
+        VOUCHER_PURCHASE_NOT_FOUND: {
+            code: "VOUCHER_PURCHASE_NOT_FOUND",
+            message: "Voucher purchase not found",
         },
     },
 };

@@ -37,17 +37,16 @@ export function isInteger(value: unknown): boolean {
 }
 
 /**
- * Converts valid integer values (string or number) to a number.
- * Returns null if conversion is not possible.
- */
-export function toInteger(value: unknown): number | null {
-    if (isInteger(value)) return Number(value);
-    return null;
-}
-
-/**
  * Checks if the value is a boolean.
  */
 export function isBoolean(value: unknown): boolean {
     return typeof value === "boolean";
+}
+
+/**
+ * Helper: Check if a value is a valid positive integer ID.
+ */
+export function isValidId(value: unknown): boolean {
+    const num = Number(value);
+    return Number.isInteger(num) && num > 0;
 }

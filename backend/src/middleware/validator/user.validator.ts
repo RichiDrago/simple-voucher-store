@@ -1,20 +1,12 @@
 import type { Request, Response, NextFunction } from "express";
 
 // Utils
-import { isNonEmptyString } from "../../utils/validator.js";
+import { isNonEmptyString, isValidId } from "../../utils/validator.js";
 import AppError from "../../utils/apiError.js";
 
 // Const
 import httpStatusCodes from "../../const/httpStatusCodes.js";
 import apiResponse from "../../const/apiResponse.js";
-
-/**
- * Helper: Check if a value is a valid positive integer ID.
- */
-function isValidId(value: unknown): boolean {
-    const num = Number(value);
-    return Number.isInteger(num) && num > 0;
-}
 
 /**
  * Validate the :id parameter in routes like /users/:id.
@@ -80,10 +72,6 @@ export function validateUpdateUser(
             apiResponse.error.INVALID_PARAMS
         );
     }
-
-    console.log(username);
-    console.log(password);
-    console.log(privilege_name);
 
     // at least one field must be present
     const hasAtLeastOneField =
