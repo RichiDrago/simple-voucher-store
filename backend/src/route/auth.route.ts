@@ -10,13 +10,13 @@ const authRouter = express.Router();
 
 /**
  * @route POST /auth/login
- * @desc  Login utente
+ * @desc  User login
  */
 authRouter.post("/login", validateLogin, authController.login);
 
 /**
  * @route POST /auth/register
- * @desc  Registrazione utente
+ * @desc  User registration
  */
 authRouter.post("/register", validateRegister, authController.register);
 

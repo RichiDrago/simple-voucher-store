@@ -27,6 +27,9 @@ export class User
     declare username: string;
     declare password: string;
     declare privilege_name: string;
+    declare createdAt: string;
+    declare updatedAt: string;
+    declare Role: Role;
 }
 
 User.init(
@@ -60,8 +63,10 @@ User.init(
         sequelize: db,
         tableName: "User",
         hooks: {
-            beforeCreate: async (user) => {
-                user.password = await hashPassword(user.password);
+            beforeSave: async (user) => {
+                if (user.changed("password")) {
+                    user.password = await hashPassword(user.password);
+                }
             },
         },
     }

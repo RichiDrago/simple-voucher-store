@@ -13,7 +13,7 @@ import { LoginAuthDTO, RegisterAuthDTO } from "../dto/auth.dto.js";
 import apiResponse from "../const/apiResponse.js";
 import httpStatusCodes from "../const/httpStatusCodes.js";
 
-export default class UserController {
+export default class AuthController {
     // REGISTER ---------------------------------------
     static async register(req: Request, res: Response, next: NextFunction) {
         try {

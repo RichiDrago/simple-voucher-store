@@ -23,6 +23,18 @@ export class UserDAL {
         return User.create(data);
     }
 
+    static async updateUser(
+        id: number,
+        data: Partial<{
+            username: string;
+            password: string;
+            privilege_name: string;
+        }>
+    ) {
+        await User.update(data, { where: { id }, individualHooks: true });
+        return this.findById(id);
+    }
+
     static async deleteUser(id: number) {
         return User.destroy({ where: { id } });
     }

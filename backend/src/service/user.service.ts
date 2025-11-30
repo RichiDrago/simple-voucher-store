@@ -2,79 +2,88 @@
 import { UserDAL } from "../dal/user.dal.js";
 
 // DTO
-import {
-    RegisterUserDTO,
-    LoginUserDTO,
-    UserResponseDTO,
-} from "../dto/user.dto.js";
+import { UpdateUserDTO, UserResponseDTO } from "../dto/user.dto.js";
 
 // Utils
 import ApiError from "../utils/apiError.js";
+
+// Consts
 import apiResponse from "../const/apiResponse.js";
 import httpStatusCodes from "../const/httpStatusCodes.js";
-import { hashPassword, comparePassword } from "../utils/hash.js";
 
 export class UserService {
     /**
-     * Registers a new user.
-     * Throws ApiError if username is already taken.
+     * Get all users.
      */
-    static async register(dto: RegisterUserDTO): Promise<UserResponseDTO> {
-        const exists = await UserDAL.findByUsername(dto.username);
-        if (exists) {
-            throw new ApiError(
-                httpStatusCodes.CONFLICT,
-                "Username already taken",
-                "USERNAME_TAKEN"
+    static async getAll(): Promise<UserResponseDTO[]> {
+        const users = await UserDAL.getAllUsers();
+
+        return users.map((user) => {
+            return new UserResponseDTO(
+                user.id,
+                user.username,
+                user.privilege_name,
+                user.Role.privilege ?? 1
             );
-        }
-
-        const hashed = await hashPassword(dto.password);
-
-        const user = await UserDAL.createUser({
-            username: dto.username,
-            password: hashed,
-            privilege_name: "user",
         });
-
-        return this.toUserResponse(user);
     }
 
     /**
-     * Authenticates a user using username and password.
-     * Throws ApiError if credentials are invalid.
+     * Get user by ID.
      */
-    static async login(dto: LoginUserDTO): Promise<UserResponseDTO> {
-        const user = await UserDAL.findByUsername(dto.username);
+    static async getById(id: string): Promise<UserResponseDTO> {
+        const user = await UserDAL.findById(Number(id));
         if (!user) {
             throw new ApiError(
-                httpStatusCodes.UNAUTHORIZED,
-                apiResponse.error.INVALID_CREDENTIALS
+                httpStatusCodes.NOT_FOUND,
+                apiResponse.error.USER_NOT_FOUND
             );
         }
 
-        const isValid = await comparePassword(dto.password, user.password);
-        if (!isValid) {
-            throw new ApiError(
-                httpStatusCodes.UNAUTHORIZED,
-                apiResponse.error.INVALID_CREDENTIALS
-            );
-        }
-
-        // If you want to add tokens later, you can return:
-        // { user: this.toUserResponse(user), accessToken, refreshToken }
-        return this.toUserResponse(user);
+        return new UserResponseDTO(
+            user.id,
+            user.username,
+            user.privilege_name,
+            user.Role.privilege ?? 1
+        );
     }
 
     /**
-     * Maps a user entity (from DAL/ORM) to a UserResponseDTO.
+     * Update user by ID.
      */
-    private static toUserResponse(user: any): UserResponseDTO {
-        const dto = new UserResponseDTO(
-            user.id,
-            user.username,
-            user.privilege_name ?? "user"
+    static async update(
+        id: string,
+        data: UpdateUserDTO
+    ): Promise<UserResponseDTO> {
+        const updatedUser = await UserDAL.updateUser(Number(id), data);
+
+        if (!updatedUser) {
+            throw new ApiError(
+                httpStatusCodes.NOT_FOUND,
+                apiResponse.error.USER_NOT_FOUND
+            );
+        }
+
+        return new UserResponseDTO(
+            updatedUser.id,
+            updatedUser.username,
+            updatedUser.privilege_name,
+            updatedUser.Role.privilege ?? 1
         );
-        return dto;
+    }
+
+    /**
+     * Delete user by ID.
+     */
+    static async delete(id: string): Promise<void> {
+        const user = await UserDAL.findById(Number(id));
+        if (!user) {
+            throw new ApiError(
+                httpStatusCodes.NOT_FOUND,
+                apiResponse.error.USER_NOT_FOUND
+            );
+        }
+
+        await UserDAL.deleteUser(Number(id));
     }
 }

@@ -13,7 +13,7 @@ import {
 
 // Utils
 import ApiError from "../utils/apiError.js";
-import { hashPassword, comparePassword } from "../utils/hash.js";
+import { comparePassword } from "../utils/hash.js";
 
 // Consts
 import apiResponse from "../const/apiResponse.js";
@@ -48,7 +48,6 @@ export class AuthService {
      */
     static async login(dto: LoginAuthDTO): Promise<AuthResponseDTO> {
         const user = await UserDAL.findByUsername(dto.username);
-        console.log(user);
         if (!user) {
             throw new ApiError(
                 httpStatusCodes.UNAUTHORIZED,

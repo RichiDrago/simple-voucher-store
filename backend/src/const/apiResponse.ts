@@ -6,12 +6,10 @@ const apiResponse = {
         },
         USER: {
             getUsers: "Users fetched successfully",
+            getUserById: "User fetched successfully",
             addUser: "User created successfully",
             editUser: "User edited successfully",
-            deleteUser: "User deleted successfully",
-            login: "User logged in successfully",
-            refreshToken: "Token refreshed successfully",
-            authToken: "Authorization token valid",
+            deleteUser: "User deleted successfully"
         },
     },
     error: {
@@ -23,6 +21,10 @@ const apiResponse = {
         INVALID_PARAMS: {
             code: "INVALID_PARAMS",
             message: "Invalid parameters",
+        },
+        INVALID_TOKEN: {
+            code: "INVALID_TOKEN",
+            message: "Invalid token",
         },
         // Auth Errors
         INVALID_CREDENTIALS: {
@@ -36,7 +38,12 @@ const apiResponse = {
         USERNAME_TAKEN: {
             code: "USERNAME_TAKEN",
             message: "Username is already taken",
-        }
+        },
+        // User Errors
+        USER_NOT_FOUND: {
+            code: "USER_NOT_FOUND",
+            message: "User not found",
+        },
     },
 };
 

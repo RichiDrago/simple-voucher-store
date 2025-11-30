@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 
 // Utils
-import { isNonEmptyString, hasMinLength } from "../../utils/validator.js";
+import { isNonEmptyString } from "../../utils/validator.js";
 import AppError from "../../utils/apiError.js";
 
 // Const
