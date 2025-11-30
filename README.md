@@ -1,34 +1,34 @@
 # simple-voucher-store
 
-This document describes a technical challenge I was asked to complete as part of a job interview process. The task involved designing and implementing a simple, fully containerized ecommerce system focused on the purchase of vouchers, including backend, frontend, API documentation, and database design.
-
 ## Overview
 
-Develop a simple ecommerce platform for purchasing vouchers. Each item in the ecommerce must include:
-- A name
-- A set of possible price denominations
-- A description
-- A set of associated assets (photos)
+Sviluppare un semplice ecommerce per l’acquisto di buoni.
 
-The ecommerce does not need shopping cart functionality. 
+Ogni voce dell’ecommerce deve avere:
 
-The backend must be built with **NodeJS**, **TypeScript**, and **Express**, while the database must be **MySQL**.
+- Un nome
+- Una serie di tagli di prezzo possibili
+- Una descrizione
+- Una serie di asset (foto) associate
 
-The application must include basic login and registration features (a simple username and hashed password is sufficient). 
+L’ecommerce non deve avere funzionalità di carrello.
 
-Voucher purchases must be saved and retrieved by communicating with the backend through a token-authenticated REST API. The token is returned by a login function. There is no need to implement a refreshToken flow—just a regular **JWT access token** is enough.
+Il backend con NodeJS con **TypeScript** ed **Express** mentre il DB deve essere il **MySQL**.
 
-Build a simple web interface using **React** (Next.js is also fine) and **TailwindCSS** to navigate the ecommerce and use all available APIs.
+L’applicazione deve avere funzionalità base di login e registrazione (va benissimo un semplice nome utente e password hashata).
 
-Everything must be containerized using **Docker** and **Docker Compose**, including the database.
+Gli acquisti di buoni vengono salvati e recuperati comunicando con il backend tramite un’API REST autenticata da token, restituito da una funzione di login (non preoccuparsi di implementare un flusso di refreshToken, basta un normale access **token JWT**).
 
-Document, using a tool of your choice (Notion, the project’s README.md, etc.):
-- The backend APIs, including requests (headers, body), responses (headers, body), and any error messages
-- The database tables and their relationships (bonus points for an ER diagram made with tools like draw.io or Excalidraw)
+Costruire una semplice interfaccia web con **React** (volendo anche NextJS) e **TailwindCSS** per navigare l’ecommerce utilizzando tutte le API a disposizione
 
-Finally, publish the repository on GitHub.
+Il tutto deve essere containerizzato tramite **Docker** e **Docker Compose**, incluso il DB.
 
-**Time Available:** 7 days
+Documentare utilizzando un tool di vostra preferenza (Notion, il [README.md](http://README.md) della repo...).:
+
+- le API del backend con richiesta (header, body), risposta (header, body) ed eventuali messaggi di errore
+- Le tabelle create sul DB e le relazioni tra di esse (plus se con schema ER creato con tool come [draw.io](http://draw.io) o excalidraw)
+
+Pubblicare poi la repo su GitHub.
 
 ## Development
 
