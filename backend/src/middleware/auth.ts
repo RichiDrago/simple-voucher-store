@@ -9,7 +9,10 @@ import httpStatusCodes from "../const/httpStatusCodes.js";
 import apiResponse from "../const/apiResponse.js";
 import AppError from "../utils/apiError.js";
 
-const PUBLIC_ROUTES = ["/api/auth/login", "/api/auth/register"];
+const PUBLIC_ROUTES = [
+    "/api/auth/login",
+    "/api/auth/register"
+];
 
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     try {

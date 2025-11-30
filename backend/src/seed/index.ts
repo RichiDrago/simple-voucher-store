@@ -6,6 +6,7 @@ import { seedRoles } from "./Roles.seed.js";
 import { seedUsers } from "./Users.seed.js";
 import { seedPriceOptions } from "./PriceOptions.seed.js";
 import { seedVouchers } from "./Voucher.seed.js";
+import { seedAssets } from "./Assets.seed.js";
 
 export async function seedInitialData() {
     try {
@@ -15,6 +16,7 @@ export async function seedInitialData() {
         await seedUsers();
         await seedPriceOptions();
         await seedVouchers();
+        await seedAssets();
 
         logger.info("Database seed completed.");
     } catch (error) {

@@ -1,5 +1,11 @@
 import express, { json, urlencoded } from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 import "dotenv/config";
+
+// __dirname setup
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Logger
 import logger from "./config/logger.js";
@@ -28,6 +34,10 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(apiLogger);
 app.use(responseBuilder);
+
+// Static files
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+
 app.use(auth);
 
 // Routes
