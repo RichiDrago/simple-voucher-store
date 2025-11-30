@@ -4,6 +4,7 @@ import logger from "../config/logger.js";
 // Seeders
 import { seedRoles } from "./Roles.seed.js";
 import { seedUsers } from "./Users.seed.js";
+import { seedPriceOptions } from "./PriceOptions.seed.js";
 
 export async function seedInitialData() {
     try {
@@ -11,6 +12,7 @@ export async function seedInitialData() {
 
         await seedRoles();
         await seedUsers();
+        await seedPriceOptions();
 
         logger.info("Database seed completed.");
     } catch (error) {
