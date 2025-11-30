@@ -1,0 +1,30 @@
+meta {
+  name: Update voucher purchase
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://{{host}}:{{port}}/api/voucher-purchases/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+body:json {
+  {
+    "user_id": 2,
+    "voucher_id": 2,
+    "price_option": "55",
+    "date": "ieri",
+    "quantity": 54
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
