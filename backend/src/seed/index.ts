@@ -7,6 +7,7 @@ import { seedUsers } from "./Users.seed.js";
 import { seedPriceOptions } from "./PriceOptions.seed.js";
 import { seedVouchers } from "./Voucher.seed.js";
 import { seedAssets } from "./Assets.seed.js";
+import { seedVoucherPriceOptions } from "./VoucherPriceOptions.seed.js";
 
 export async function seedInitialData() {
     try {
@@ -17,6 +18,7 @@ export async function seedInitialData() {
         await seedPriceOptions();
         await seedVouchers();
         await seedAssets();
+        await seedVoucherPriceOptions();
 
         logger.info("Database seed completed.");
     } catch (error) {
