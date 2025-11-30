@@ -1,0 +1,87 @@
+services:
+
+    # Maria DB
+
+    db:
+        image: mariadb:latest
+        container_name: mariadb
+        ports:
+            - 3306:3306
+        environment:
+            MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+            MARIADB_DATABASE: ${DB_DATABASE}
+        restart: unless-stopped
+        healthcheck:
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+            interval: 30s
+            timeout: 5s
+            retries: 3
+            start_period: 10s
+
+    db_gui:
+        image: phpmyadmin:latest
+        container_name: phpmyadmin
+        restart: unless-stopped
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_USER: root
+            PMA_PASSWORD: ${DB_PASSWORD}
+        depends_on:
+            - db
+
+    # Backend
+
+    backend:
+        build:
+            context: ../backend
+            dockerfile: ./docker/Dockerfile
+        container_name: backend
+        restart: unless-stopped
+        # ports:
+        #     - 3000:3000
+        environment:
+            NODE_ENV: production
+            LOG_LEVEL: info
+            DB_HOST: db
+            DB_PORT: 3306
+            DB_USER: root
+            DB_PASSWORD: ${DB_PASSWORD}
+            DB_NAME: ${DB_DATABASE}
+            JWT_KEY: ${JWT_KEY}
+            DEFAULT_STORAGE_PATH: ${DEFAULT_STORAGE_PATH}
+        # volumes:
+        #   - /Users/richidrago/Desktop/test:/usr/src/app/storage/uploads
+        #    - C:\Users\PROD-FAB\Documents\Commesse:/usr/src/app/storage/uploads
+        depends_on:
+            - db
+
+    # Frontend
+
+    frontend:
+        build:
+            context: ../frontend
+            dockerfile: ./docker/Dockerfile
+        container_name: frontend
+        restart: unless-stopped
+        # ports:
+        #     - 81:80
+        depends_on:
+            - backend
+         
+    # Nginx
+
+    nginx:
+        image: nginx:alpine
+        container_name: nginx
+        restart: unless-stopped
+        volumes:
+            - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+        ports:
+            - "80:80"
+        depends_on:
+            - backend
+            - frontend
+        
