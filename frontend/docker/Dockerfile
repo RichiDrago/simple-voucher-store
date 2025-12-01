@@ -3,6 +3,8 @@ FROM node:trixie-slim AS build
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 
+ENV VITE_BACKEND_PORT=80
+
 RUN npm install
 RUN npm run build
 

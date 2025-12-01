@@ -127,6 +127,7 @@
             "passwordsDoNotMatch": "Le password non corrispondono"
         },
         "error": {
+            "Unknown server error": "Errore sconosciuto del server",
             "SESSION_EXPIRED": "La sessione è scaduta, effettua nuovamente il login",
             "NOT_AUTHORIZED": "Non autorizzato",
             "INTERNAL_SERVER_ERROR": "Errore interno del server",

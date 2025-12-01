@@ -40,8 +40,8 @@ services:
             dockerfile: ./docker/Dockerfile
         container_name: backend
         restart: unless-stopped
-        # ports:
-        #     - 3000:3000
+        ports:
+            - 3000:3000
         environment:
             NODE_ENV: production
             LOG_LEVEL: info
@@ -50,8 +50,7 @@ services:
             DB_USER: root
             DB_PASSWORD: ${DB_PASSWORD}
             DB_NAME: ${DB_DATABASE}
-            JWT_KEY: ${JWT_KEY}
-            DEFAULT_STORAGE_PATH: ${DEFAULT_STORAGE_PATH}
+            JWT_SECRET: ${JWT_SECRET}
         # volumes:
         #   - /Users/richidrago/Desktop/test:/usr/src/app/storage/uploads
         #    - C:\Users\PROD-FAB\Documents\Commesse:/usr/src/app/storage/uploads

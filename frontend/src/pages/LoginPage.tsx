@@ -76,8 +76,8 @@ const LoginPage = () => {
     // ONLY DEVELOPMENT
 
     useEffect(() => {
-        usernameRef.current!.value = "admin";
-        passwordRef.current!.value = "admin";
+        usernameRef.current!.value = "user";
+        passwordRef.current!.value = "user";
     }, []);
 
     return (
