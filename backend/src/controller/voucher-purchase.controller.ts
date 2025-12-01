@@ -7,7 +7,10 @@ import logger from "../config/logger.js";
 import { VoucherPurchaseService } from "../service/voucher-purchase.service.js";
 
 // DTOs
-import { UpdateVoucherPurchaseDTO } from "../dto/voucher-purchase.dto.js";
+import {
+    CreateVoucherPurchaseDTO,
+    UpdateVoucherPurchaseDTO,
+} from "../dto/voucher-purchase.dto.js";
 
 // Const
 import apiResponse from "../const/apiResponse.js";
@@ -47,6 +50,35 @@ export default class VoucherPurchaseController {
         } catch (error: any) {
             logger.error(
                 `VoucherPurchaseController - getById - ${error.message}`
+            );
+            // Delegate error to global error handler
+            next(error);
+        }
+    }
+
+    // CREATE ------------------------------------------
+    static async create(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { user_id, voucher_id, price_option, date, quantity } =
+                req.body;
+
+            const dto = new CreateVoucherPurchaseDTO(
+                user_id,
+                voucher_id,
+                price_option,
+                date,
+                quantity
+            );
+            const result = await VoucherPurchaseService.create(dto);
+
+            res.createResponse(
+                httpStatusCodes.CREATED,
+                apiResponse.success.VOUCHER_PURCHASE.addVoucherPurchase,
+                result
+            );
+        } catch (error: any) {
+            logger.error(
+                `VoucherPurchaseController - create - ${error.message}`
             );
             // Delegate error to global error handler
             next(error);

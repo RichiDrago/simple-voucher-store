@@ -22,7 +22,11 @@ export class VoucherService {
             return new VoucherResponseDTO(
                 voucher.id,
                 voucher.name,
-                voucher.description ?? null
+                voucher.description ?? null,
+                voucher.Assets ? voucher.Assets.map((asset) => asset.path) : [],
+                voucher.PriceOptions
+                    ? voucher.PriceOptions.map((po) => po.price)
+                    : []
             );
         });
     }
@@ -43,7 +47,11 @@ export class VoucherService {
         return new VoucherResponseDTO(
             voucher.id,
             voucher.name,
-            voucher.description ?? null
+            voucher.description ?? null,
+            voucher.Assets ? voucher.Assets.map((asset) => asset.path) : [],
+            voucher.PriceOptions
+                ? voucher.PriceOptions.map((po) => po.price)
+                : []
         );
     }
 

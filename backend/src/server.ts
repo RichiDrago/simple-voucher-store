@@ -18,6 +18,7 @@ import apiLogger from "./middleware/api-logger.js";
 import errorHandler from "./middleware/error-handler.js";
 import responseBuilder from "./middleware/response-builder.js";
 import auth from "./middleware/auth.js";
+import cors from "./middleware/cors.js";
 
 // Routes
 import apiRoutes from "./route/index.js";
@@ -34,6 +35,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(apiLogger);
 app.use(responseBuilder);
+app.use(cors);
 
 // Static files
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));

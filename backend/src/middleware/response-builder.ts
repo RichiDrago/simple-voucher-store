@@ -20,7 +20,9 @@ export function createResponse<T>(
 ) {
     return res.status(httpStatusCode).json({
         success: httpStatusCode < 400,
-        message,
+        result: {
+            message: message,
+        },
         data,
     });
 }

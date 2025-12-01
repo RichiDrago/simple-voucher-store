@@ -14,10 +14,14 @@ export class VoucherResponseDTO {
     id: number;
     name: string;
     description?: string;
+    assets: string[];
+    price_options?: number[];
 
-    constructor(id: number, name: string, description?: string) {
+    constructor(id: number, name: string, description?: string, assets: string[] = [], price_options: number[] = []) {
         this.id = id;
         this.name = name;
         if (description !== undefined) this.description = description;
+        this.assets = assets;
+        this.price_options = price_options;
     }
 }

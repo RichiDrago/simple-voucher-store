@@ -3,6 +3,7 @@ import { VoucherPurchaseDAL } from "../dal/voucher-purchase.dal.js";
 
 // DTO
 import {
+    CreateVoucherPurchaseDTO,
     UpdateVoucherPurchaseDTO,
     VoucherPurchaseResponseDTO,
 } from "../dto/voucher-purchase.dto.js";
@@ -53,6 +54,22 @@ export class VoucherPurchaseService {
             purchase.price_option,
             purchase.date,
             purchase.quantity
+        );
+    }
+
+    /**
+     * Create a new voucher purchase.
+     */
+    static async create(dto: CreateVoucherPurchaseDTO): Promise<VoucherPurchaseResponseDTO> {
+        const newPurchase = await VoucherPurchaseDAL.createVoucherPurchase(dto);
+
+        return new VoucherPurchaseResponseDTO(
+            newPurchase.id,
+            newPurchase.user_id,
+            newPurchase.voucher_id,
+            newPurchase.price_option,
+            newPurchase.date,
+            newPurchase.quantity
         );
     }
 
