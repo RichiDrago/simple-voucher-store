@@ -143,3 +143,78 @@ export function validateUpdateVoucherPurchase(
 
     next();
 }
+
+/**
+ * Validate CREATE /voucher-purchase
+ *
+ * Requires:
+ * - user_id: positive integer
+ * - voucher_id: positive integer
+ * - price_option: non-empty string
+ * - date: non-empty string
+ * - quantity: positive integer
+ */
+export function validateCreateVoucherPurchase(
+    req: Request,
+    res: Response,
+    next: NextFunction
+): void {
+    const { user_id, voucher_id, price_option, date, quantity } = req.body;
+
+    // tutti i campi devono essere presenti
+    if (
+        user_id === undefined ||
+        voucher_id === undefined ||
+        price_option === undefined ||
+        date === undefined ||
+        quantity === undefined
+    ) {
+        throw new AppError(
+            httpStatusCodes.BAD_REQUEST,
+            apiResponse.error.INVALID_PARAMS
+        );
+    }
+
+    // user_id
+    if (!isValidId(user_id)) {
+        throw new AppError(
+            httpStatusCodes.BAD_REQUEST,
+            apiResponse.error.INVALID_PARAMS
+        );
+    }
+
+    // voucher_id
+    if (!isValidId(voucher_id)) {
+        throw new AppError(
+            httpStatusCodes.BAD_REQUEST,
+            apiResponse.error.INVALID_PARAMS
+        );
+    }
+
+    // price_option
+    if (!isNonEmptyString(price_option)) {
+        throw new AppError(
+            httpStatusCodes.BAD_REQUEST,
+            apiResponse.error.INVALID_PARAMS
+        );
+    }
+
+    // date (stringa non vuota; se ti serve puoi aggiungere un controllo formato data)
+    if (!isNonEmptyString(date)) {
+        throw new AppError(
+            httpStatusCodes.BAD_REQUEST,
+            apiResponse.error.INVALID_PARAMS
+        );
+    }
+
+    // quantity
+    const num = Number(quantity);
+    if (!isInteger(num) || num <= 0) {
+        throw new AppError(
+            httpStatusCodes.BAD_REQUEST,
+            apiResponse.error.INVALID_PARAMS
+        );
+    }
+
+    next();
+}

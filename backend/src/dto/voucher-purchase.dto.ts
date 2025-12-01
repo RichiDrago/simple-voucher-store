@@ -1,3 +1,26 @@
+// DTO used for create voucher purchase request
+export class CreateVoucherPurchaseDTO {
+    user_id: number;
+    voucher_id: number;
+    price_option: string;
+    date: string;
+    quantity: number;
+
+    constructor(
+        user_id: number,
+        voucher_id: number,
+        price_option: string,
+        date: string,
+        quantity: number
+    ) {
+        this.user_id = user_id;
+        this.voucher_id = voucher_id;
+        this.price_option = price_option;
+        this.date = date;
+        this.quantity = quantity;
+    }
+}
+
 // DTO used for update voucher purchase request
 export class UpdateVoucherPurchaseDTO {
     user_id?: number;

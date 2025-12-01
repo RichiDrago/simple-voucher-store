@@ -6,6 +6,7 @@ import voucherPurchaseController from "../controller/voucher-purchase.controller
 // Validators
 import {
     validateGetVoucherPurchaseById,
+    validateCreateVoucherPurchase,
     validateUpdateVoucherPurchase,
     validateDeleteVoucherPurchase,
 } from "../middleware/validator/voucher-purchase.validator.js";
@@ -14,9 +15,12 @@ const voucherPurchaseRoute = express.Router();
 
 /**
  * @route GET /voucher-purchases
- * @desc  Get all user voucher purchases
+ * @route POST /voucher-purchases
+ * @desc  Get all user voucher purchases or create a new voucher purchase
  */
-voucherPurchaseRoute.get("/", voucherPurchaseController.getAll);
+voucherPurchaseRoute
+    .get("/", voucherPurchaseController.getAll)
+    .post("/", validateCreateVoucherPurchase, voucherPurchaseController.create);
 
 /**
  * @route GET /oucher-purchases/:id

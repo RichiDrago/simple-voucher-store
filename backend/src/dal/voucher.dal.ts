@@ -1,13 +1,19 @@
 // Model
 import Voucher from "../model/Voucher.model.js";
+import Asset from "../model/Asset.model.js";
+import PriceOption from "../model/PriceOption.model.js";
 
 export class VoucherDAL {
     static async getAllVouchers() {
-        return Voucher.findAll();
+        return Voucher.findAll({
+            include: [Asset, PriceOption],
+        });
     }
 
     static async findById(id: number) {
-        return Voucher.findByPk(id);
+        return Voucher.findByPk(id, {
+            include: Asset,
+        });
     }
 
     static async createVoucher(data: { name: string; description?: string }) {

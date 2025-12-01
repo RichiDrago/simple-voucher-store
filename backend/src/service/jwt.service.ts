@@ -38,6 +38,7 @@ export class JwtService {
                 id: user.id,
                 username: user.username,
                 privilege_name: user.privilege_name,
+                privelege_level: user.Role?.privilege ?? 1,
             },
             accessSecret as Secret,
             options
