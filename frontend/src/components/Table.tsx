@@ -31,6 +31,8 @@ type DataTableProps<T> = {
     handleChangeItemForPage?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     handlePreviousPage?: () => void;
     handleNextPage?: () => void;
+    /** Nodo custom per la colonna azioni: decidi tu cosa renderizzare */
+    rowActions?: (id: T[keyof T] | undefined, row: T) => React.ReactNode;
 };
 
 export const Table = <T,>({
@@ -45,6 +47,7 @@ export const Table = <T,>({
     handleChangeItemForPage,
     handlePreviousPage,
     handleNextPage,
+    rowActions,
 }: DataTableProps<T>) => {
     // Hooks
     const { t } = useTranslation();
@@ -77,12 +80,15 @@ export const Table = <T,>({
                                     {col.header}
                                 </th>
                             ))}
+                            {rowActions && <th scope="col"></th>}
                         </tr>
                     </thead>
                     {/* Body */}
                     <tbody className="divide-y divide-gray-200">
                         {data.map((row, index) => {
                             const key = rowKey ? String(row[rowKey]) : index;
+                            const id = rowKey ? row[rowKey] : undefined;
+
                             return (
                                 <tr key={key} className="transition-colors hover:bg-slate-50">
                                     {columns.map((col) => {
@@ -96,6 +102,8 @@ export const Table = <T,>({
                                             </td>
                                         );
                                     })}
+
+                                    {rowActions && <td className="px-4 py-2 text-center align-middle text-slate-800">{rowActions(id, row)}</td>}
                                 </tr>
                             );
                         })}
@@ -108,7 +116,11 @@ export const Table = <T,>({
                     {/* Item for page */}
                     <div className="flex items-center space-x-4">
                         <p>{t(`${TRANSLATION_NAMESPACE}.itemForPage`)}</p>
-                        <select className="w-20 rounded-md border border-gray-400 p-1 text-center text-xl" value={itemForPage} onChange={handleChangeItemForPage}>
+                        <select
+                            className="w-20 rounded-md border border-gray-400 p-1 text-center text-xl"
+                            value={itemForPage}
+                            onChange={handleChangeItemForPage}
+                        >
                             {itemForPageValues.map((value) => (
                                 <option key={value} value={value}>
                                     {value}
@@ -122,7 +134,7 @@ export const Table = <T,>({
                             <img src={arrowLeftIcon} alt="previous" />
                         </button>
                         <button className="rounded-lg p-2 hover:bg-gray-200" onClick={handleNextPage}>
-                            <img src={arrowRightIcon} alt="previous" />
+                            <img src={arrowRightIcon} alt="next" />
                         </button>
                     </div>
                 </div>

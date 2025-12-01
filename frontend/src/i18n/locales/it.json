@@ -30,6 +30,26 @@
             "titleShort": "404",
             "description": "Pagina non trovata",
             "home": "Torna alla home page"
+        },
+        "vouchers": {
+            "title": "Voucher",
+            "subtitle": "Esplora i voucher disponibili per l'acquisto",
+            "columns": {
+                "name": "Nome",
+                "description": "Descrizione",
+                "priceOptions": "Prezzo/Taglio"
+            }
+        },
+        "myVouchers": {
+            "title": "I miei voucher",
+            "subtitle": "Visualizza e gestisci i tuoi voucher acquistati",
+            "columns": {
+                "voucher": "Codice Voucher",
+                "priceOption": "Prezzo/Taglio",
+                "quantity": "Quantità",
+                "date": "Data di acquisto"
+            },
+            "emptyMessage": "Non hai ancora acquistato voucher."
         }
     },
     "components": {
@@ -43,9 +63,40 @@
         "table": {
             "itemForPage": "Voci per pagina"
         },
-        "filter": {
-            "resetFilters": "Reimposta filtri",
-            "filterBy": "Filtra per"
+        "carousel": {
+            "noImage": "Nessuna immagine disponibile"
+        },
+        "dialog": {
+            "infoVoucher": {
+                "title": "Dettagli voucher",
+                "name": "Nome voucher",
+                "description": "Descrizione voucher",
+                "assets": "Immagini",
+                "priceOptions": "Opzioni di prezzo/taglio",
+                "save": "Chiudi"
+            },
+            "addVoucherPurchase": {
+                "title": "Acquista voucher",
+                "voucher": "Nome voucher",
+                "priceOption": "Prezzo/Taglio",
+                "quantity": "Quantità",
+                "save": "Acquista"
+            },
+            "infoVoucherPurchase": {
+                "title": "Dettagli acquisto voucher",
+                "voucherName": "Nome voucher",
+                "voucherDescription": "Descrizione voucher",
+                "voucherAssets": "Immagini del voucher",
+                "priceOption": "Prezzo/Taglio",
+                "quantity": "Quantità",
+                "date": "Data di acquisto",
+                "save": "Chiudi"
+            },
+            "deleteVoucherPurchase": {
+                "title": "Elimina acquisto voucher",
+                "text": "Sei sicuro di voler eliminare questo acquisto del voucher? Questa azione non può essere annullata.",
+                "save": "Elimina"
+            }
         }
     },
     "notification": {
@@ -68,7 +119,9 @@
         },
         "success": {
             "login": "Accesso eseguito con successo",
-            "register": "Registrazione eseguita con successo"
+            "register": "Registrazione eseguita con successo",
+            "voucherPurchaseDeleted": "Acquisto del voucher eliminato con successo",
+            "voucherPurchaseCreated": "Acquisto del voucher creato con successo"
         },
         "warning": {
             "passwordsDoNotMatch": "Le password non corrispondono"
