@@ -1,0 +1,90 @@
+{
+    "pages": {
+        "login": {
+            "title": "Simple Voucher Store",
+            "subtitle": "Accedi al tuo account",
+            "username": "Username",
+            "exampleUsername": "esempio",
+            "password": "Password",
+            "rememberMe": "Ricordami",
+            "submit": "Accedi",
+            "submiting": "Accesso in corso...",
+            "noAccount": "Non hai un account?",
+            "register": "Registrati"
+        },
+        "register": {
+            "title": "Simple Voucher Store",
+            "subtitle": "Crea un nuovo account",
+            "username": "Username",
+            "exampleUsername": "esempio",
+            "password": "Password",
+            "confirmPassword": "Conferma Password",
+            "rememberMe": "Ricordami",
+            "submit": "Registrati",
+            "submiting": "Registrazione in corso...",
+            "haveAccount": "Hai già un account?",
+            "login": "Accedi"
+        },
+        "notFound": {
+            "title": "Pagina non trovata",
+            "titleShort": "404",
+            "description": "Pagina non trovata",
+            "home": "Torna alla home page"
+        }
+    },
+    "components": {
+        "loading": {
+            "loading": "In attesa dei dati..."
+        },
+        "navbar": {
+            "vouchers": "Voucher",
+            "myVouchers": "I miei voucher"
+        },
+        "table": {
+            "itemForPage": "Voci per pagina"
+        },
+        "filter": {
+            "resetFilters": "Reimposta filtri",
+            "filterBy": "Filtra per"
+        }
+    },
+    "notification": {
+        "codes": {
+            "200": "Richiesta eseguita con successo",
+            "201": "Richiesta eseguita con successo",
+            "202": "Richiesta accettata",
+            "204": "Nessun contenuto",
+            "400": "Richiesta non valida",
+            "401": "Non autorizzato",
+            "403": "Vietato",
+            "404": "Risorsa Non trovata",
+            "408": "Timeout della richiesta",
+            "422": "Entità non processabile",
+            "500": "Errore",
+            "501": "Non implementato",
+            "503": "Servizio non disponibile",
+            "activeHelp": "Help abilitato",
+            "inactiveHelp": "Help disabilitato"
+        },
+        "success": {
+            "login": "Accesso eseguito con successo",
+            "register": "Registrazione eseguita con successo"
+        },
+        "warning": {
+            "passwordsDoNotMatch": "Le password non corrispondono"
+        },
+        "error": {
+            "SESSION_EXPIRED": "La sessione è scaduta, effettua nuovamente il login",
+            "NOT_AUTHORIZED": "Non autorizzato",
+            "INTERNAL_SERVER_ERROR": "Errore interno del server",
+            "INVALID_PARAMS": "Parametri non validi",
+            "INVALID_TOKEN": "Token non valido",
+            "INVALID_CREDENTIALS": "Nome utente o password non validi",
+            "JWT_CONFIG_ERROR": "I segreti JWT non sono configurati",
+            "USERNAME_TAKEN": "Nome utente già in uso",
+            "USER_NOT_FOUND": "Utente non trovato",
+            "VOUCHER_PURCHASE_NOT_FOUND": "Acquisto del voucher non trovato",
+            "VOUCHER_NOT_FOUND": "Voucher non trovato"
+        }
+    }
+}
